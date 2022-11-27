@@ -1,0 +1,38 @@
+import UIKit
+
+class EUSocket {
+    func display() {
+        print("Needs a EU Plug")
+    }
+}
+
+class USPlug {
+    func display() {
+        print("Needs a US Socket")
+    }
+}
+
+class Adapter: EUSocket {
+    private let usPlug: USPlug
+    
+    init(_ plug: USPlug) {
+        self.usPlug = plug
+    }
+    
+    override func display() {
+        print("US Plug can connect now with EU Socket")
+    }
+}
+
+class ElectronicsApp {
+    static func checkConnectivity(euSocket: EUSocket) {
+        euSocket.display()
+    }
+}
+
+ElectronicsApp.checkConnectivity(euSocket: EUSocket())
+
+let usPlug = USPlug()
+usPlug.display()
+
+ElectronicsApp.checkConnectivity(euSocket: Adapter(usPlug))
